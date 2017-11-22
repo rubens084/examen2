@@ -1,0 +1,53 @@
+{% extends "tweets/base.html" %}
+
+ {%block search%}
+  {% include "tweets/search_form.html" %}<br/>
+{%endblock%}
+
+ {%block content%}
+{% if not request.GET.q %}
+{% endif %}
+
+
+
+
+
+{% for object in object_list %}
+<article class="post">
+
+
+
+<h4>{{object}}</h4>
+<span class="pull-right has-text-grey-light"></span>
+<div class="media">
+
+  <div class="media-left">
+
+    <!-- <p class="image is-32x32">
+      <img src="http://bulma.io/images/placeholders/128x128.png">
+    </p> -->
+  </div>
+
+  <div class="media-make">
+    <div class="make">
+      <p>
+
+        <a href="/admin/carros/car/{{object.id}}/change/">View </a>  {{object.created|timesince}}  {{object.user}}&nbsp;  <a href="/admin/carros/car/{{object.id}}/change/"> Edit  </a> <a href="/admin/carros/car/{{object.id}}/delete"> Delete </a>
+
+        <!-- <span class="tag">Question</span> -->
+      </p>
+
+    </div>
+  </div>
+
+</div>
+
+</article>
+{%empty%}
+{% if request.GET.q %}
+  <p>No tweets found.</p>
+{% else %}
+  <p>No tweets yet.</p>
+{% endif %}
+{% endfor %}
+{% endblock %}
